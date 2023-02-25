@@ -6,16 +6,20 @@ import { ImageCard } from "../../../components/ImageCard";
 import { Product } from "../../../components/Product";
 import { ProductDescription } from "../../../components/ProductDescription";
 import { fetchProduct } from "../../../services/products";
+import { useProductStore } from "../../../store";
+import { StoreInitializer } from "../../../utils/storeInitializer";
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
   const product = await fetchProduct(+params?.id);
+  useProductStore.setState(product);
   return (
-    <div className="container mx-auto flex items-center flex-wrap py-12">
-      <div className="flex gap-10 w-full">
+    <div className="container flex flex-wrap items-center py-12 mx-auto">
+      <StoreInitializer {...product} />
+      <div className="flex w-full gap-10">
         <div className="w-96">
-          <ImageCard image={product?.image} name={product?.title} />
+          <ImageCard />
         </div>
-        <ProductDescription product={product} />
+        <ProductDescription />
       </div>
     </div>
   );

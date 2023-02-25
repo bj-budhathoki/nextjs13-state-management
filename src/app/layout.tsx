@@ -16,8 +16,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        <HomeBanner />
-        {children}
+        <div className="mt-16">
+          <HomeBanner />
+          {children}
+        </div>
       </body>
     </html>
   );

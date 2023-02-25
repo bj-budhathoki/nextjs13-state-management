@@ -1,4 +1,4 @@
-export type ProductProps = {
+export interface ProductProps {
   id: number;
   title: string;
   image: string;
@@ -8,8 +8,7 @@ export type ProductProps = {
     rate: number;
     count: number;
   };
-  count: number;
-};
+}
 
 async function request<T>(url: string): Promise<T> {
   const res = await fetch(url);

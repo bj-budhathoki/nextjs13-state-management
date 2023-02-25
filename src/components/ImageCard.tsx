@@ -1,16 +1,15 @@
 import Image from "next/image";
 import React from "react";
-type ImageCardProps = {
-  image: string;
-  name: string;
-};
-export const ImageCard: React.FC<ImageCardProps> = ({ image, name }) => {
+import { useProductStore } from "../store";
+
+export const ImageCard: React.FC = () => {
+  const { title, image } = useProductStore.getState();
   return (
     <div className="flex flex-col items-center w-full">
       <div className="relative w-full h-72">
         <Image
           src={image || ""}
-          alt={name || ""}
+          alt={title || ""}
           fill
           style={{
             objectFit: "contain",
@@ -19,7 +18,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({ image, name }) => {
         />
       </div>
       <div className="pt-2">
-        <p>{name || ""}</p>
+        <p>{title || ""}</p>
       </div>
     </div>
   );

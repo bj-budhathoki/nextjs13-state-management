@@ -1,21 +1,19 @@
 import React from "react";
 import { ProductProps } from "../services/products";
+import { useProductStore } from "../store";
 import { AddToCart } from "./AddToCart";
 import { Rating } from "./Rating";
-type ProductDescription = {
-  product: ProductProps;
-};
-export const ProductDescription: React.FC<ProductDescription> = ({
-  product,
-}) => {
+
+export const ProductDescription: React.FC = () => {
+  const { description } = useProductStore.getState();
   return (
     <div className="w-96 flex flex-col gap-5">
       <div className="font-bold uppercase mb-2">Description</div>
       <div>
-        <p>{product?.description}</p>
+        <p>{description}</p>
       </div>
-      <Rating rating={Math.ceil(product?.rating?.rate)} />
-      <AddToCart price={product?.price} />
+      <Rating />
+      <AddToCart />
     </div>
   );
 };
